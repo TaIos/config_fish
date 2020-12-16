@@ -2,6 +2,15 @@ set -g theme_display_git_default_branch yes
 fish_vi_key_bindings
 
 
+
+# =============================================
+# PATH
+# =============================================
+
+set -gx PATH /home/slarty/.local/bin $PATH
+
+# =============================================
+
 alias forcepush='git add .;git commit --amend --no-edit;git push -f'
 
 alias amendall='git add .;git commit --amend --no-edit'
