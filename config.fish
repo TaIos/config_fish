@@ -3,8 +3,12 @@ fish_vi_key_bindings
 
 
 alias forcepush='git add .;git commit --amend --no-edit;git push -f'
+
 alias amendall='git add .;git commit --amend --no-edit'
+
 alias gxx='g++ -Wall -pedantic -Wextra --std=c++11 -o run.out'
+
+alias efish='vim ~/.config/fish/config.fish'
 
 # =============================================
 # JUPYTER
