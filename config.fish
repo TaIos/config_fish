@@ -8,7 +8,7 @@ alias gxx='g++ -Wall -pedantic -Wextra --std=c++11 -o run.out'
 
 # JUPYTER
 alias jn='nohup jupyter notebook --port=7000 > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost.localdomain:7000/lab > /dev/null 2>&1 &; return 0'
-alias jnl='pgrep jupyter'
+alias jnl='jupyter notebook list'
 alias jnq='kill (pgrep jupyter)'
 
 # https://github.com/fish-shell/fish-shell/issues/3541
