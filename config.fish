@@ -40,6 +40,7 @@ alias jnq='kill (pgrep jupyter)'
 function fish_user_key_bindings
     for mode in insert default visual
         bind -M $mode \cf forward-char
+        bind -M $mode \cw forward-word
     end
 	bind \ek history-search-backward
 	bind \ej history-search-forward
