@@ -7,7 +7,7 @@ fish_vi_key_bindings
 # PATH
 # =============================================
 
-set -gx PATH /home/slarty/.local/bin $PATH
+set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 
 # =============================================
 
