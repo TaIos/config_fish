@@ -40,10 +40,10 @@ alias efish='vim ~/.config/fish/config.fish'
 # =============================================
 
 # currect folder
-alias jn='nohup jupyter notebook --port=7000 . > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost.localdomain:7000/lab > /dev/null 2>&1 &; return 0'
+alias jn='nohup jupyter notebook --port=7000 . > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost:7000/lab > /dev/null 2>&1 &; return 0'
 
 # home folder defined in: ~/.jupyter/jupyter_notebook_config.json
-alias jnh='nohup jupyter notebook --port=7000  > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost.localdomain:7000/lab > /dev/null 2>&1 &; return 0'
+alias jnh='nohup jupyter notebook --port=7000  > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost:7000/lab > /dev/null 2>&1 &; return 0'
 
 alias jnl='jupyter notebook list'
 
