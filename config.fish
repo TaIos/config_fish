@@ -1,7 +1,9 @@
+# =============================================
+# EXTENTIONS
+# =============================================
+
 set -g theme_display_git_default_branch yes
 fish_vi_key_bindings
-
-
 
 # =============================================
 # PATH
@@ -9,6 +11,8 @@ fish_vi_key_bindings
 
 set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 
+# =============================================
+# ALIAS
 # =============================================
 
 alias forcepush='git add .;git commit --amend --no-edit;git push -f'
@@ -32,11 +36,14 @@ alias jnh='nohup jupyter notebook --port=7000  > /dev/null 2>&1 &; sleep 1; nohu
 alias jnl='jupyter notebook list'
 
 alias jnq='kill (pgrep jupyter)'
-# =============================================
 
+# =============================================
+# ATUTOCOMPLETION
+# =============================================
 # https://github.com/fish-shell/fish-shell/issues/3541
 # bindings: https://fishshell.com/docs/current/cmds/bind.html
 # \e alt, \c ctrl
+
 function fish_user_key_bindings
     for mode in insert default visual
         bind -M $mode \cf forward-char
@@ -45,4 +52,9 @@ function fish_user_key_bindings
 	bind \ek history-search-backward
 	bind \ej history-search-forward
 end
+
+# =============================================
+# Informative Git prompt configuration
+# =============================================
+# https://mariuszs.github.io/blog/2013/informative_git_prompt.html
 
