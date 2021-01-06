@@ -1,1 +1,6 @@
-fish_variables
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!config.fish
