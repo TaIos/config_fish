@@ -1,4 +1,14 @@
 # =============================================
+# NOTES
+# =============================================
+
+# TIDE: Fish prompt with nice walkthrough seting
+#	https://github.com/IlanCosman/tide
+
+# TIDE git configuration
+#	https://fishshell.com/docs/current/cmds/fish_git_prompt.html
+
+# =============================================
 # EXTENTIONS
 # =============================================
 
@@ -57,9 +67,4 @@ end
 # =============================================
 
 set -g theme_display_git_default_branch yes
-
-# =============================================
-# Informative Git prompt configuration
-# =============================================
-# https://mariuszs.github.io/blog/2013/informative_git_prompt.html
 
