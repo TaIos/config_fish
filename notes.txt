@@ -1,2 +1,4 @@
 Fish prompt with nice walkthrough seting
 	https://github.com/IlanCosman/tide
+Git fish prompt config
+	https://mariuszs.github.io/blog/2013/informative_git_prompt.html
