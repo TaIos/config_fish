@@ -2,7 +2,6 @@
 # EXTENTIONS
 # =============================================
 
-set -g theme_display_git_default_branch yes
 fish_vi_key_bindings
 
 # =============================================
@@ -52,6 +51,12 @@ function fish_user_key_bindings
 	bind \ek history-search-backward
 	bind \ej history-search-forward
 end
+
+# =============================================
+# GIT
+# =============================================
+
+set -g theme_display_git_default_branch yes
 
 # =============================================
 # Informative Git prompt configuration
