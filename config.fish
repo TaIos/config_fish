@@ -5,8 +5,11 @@
 # TIDE: Fish prompt with nice walkthrough seting
 #	https://github.com/IlanCosman/tide
 
-# TIDE git configuration
+# fish_git_prompt git configuration
 #	https://fishshell.com/docs/current/cmds/fish_git_prompt.html
+
+# fish prompt emoji
+#	https://medium.com/@joshuacrass/git-fish-prompt-faa389fff07c
 
 # =============================================
 # EXTENTIONS
