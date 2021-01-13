@@ -4,6 +4,7 @@
 
 # TIDE: Fish prompt with nice walkthrough seting
 #	https://github.com/IlanCosman/tide
+#		-> Run `tide configure` to open the the wizard in your terminal
 
 # fish_git_prompt git configuration
 #	https://fishshell.com/docs/current/cmds/fish_git_prompt.html
