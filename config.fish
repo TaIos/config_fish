@@ -33,6 +33,7 @@ alias forcepush='git add .;git commit --amend --no-edit;git push -f'
 alias amendall='git add .;git commit --amend --no-edit'
 
 alias gxx='g++ -Wall -pedantic -Wextra --std=c++11 -o run.out'
+alias pdp='g++ -Wall -pedantic -Wextra --std=c++11 -O3 -funroll-loops -o run.out'
 
 alias efish='vim ~/.config/fish/config.fish'
 
