@@ -2,17 +2,19 @@
 # NOTES
 # =============================================
 
-# TIDE: Fish prompt with nice walkthrough seting
-#	https://github.com/IlanCosman/tide
+# TIDE install from https://github.com/IlanCosman/tide
 # 1. curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 # 2. fisher install IlanCosman/tide
 # 3. tide configure
 
-# fish_git_prompt git configuration
-#	https://fishshell.com/docs/current/cmds/fish_git_prompt.html
-
-# fish prompt emoji
-#	https://medium.com/@joshuacrass/git-fish-prompt-faa389fff07c
+# If GIT emoji from https://medium.com/@joshuacrass/git-fish-prompt-faa389fff07c
+# are not working:
+# 1. funced _tide_item_git
+# 2. Replace it with
+#     function _tide_item_git
+#         fish_git_prompt
+#     end
+# 3. funcsave _tide_item_git
 
 # =============================================
 # FISH EXTENTIONS
