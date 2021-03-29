@@ -15,7 +15,7 @@
 #	https://medium.com/@joshuacrass/git-fish-prompt-faa389fff07c
 
 # =============================================
-# EXTENTIONS
+# FISH EXTENTIONS
 # =============================================
 
 fish_vi_key_bindings
@@ -25,6 +25,12 @@ fish_vi_key_bindings
 # =============================================
 
 set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
+
+# =============================================
+# SET
+# =============================================
+
+set -g EDITOR 'vim'
 
 # =============================================
 # ALIAS
