@@ -4,7 +4,9 @@
 
 # TIDE: Fish prompt with nice walkthrough seting
 #	https://github.com/IlanCosman/tide
-#		-> Run `tide configure` to open the the wizard in your terminal
+# 1. curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+# 2. fisher install IlanCosman/tide
+# 3. tide configure
 
 # fish_git_prompt git configuration
 #	https://fishshell.com/docs/current/cmds/fish_git_prompt.html
