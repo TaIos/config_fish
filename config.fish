@@ -32,6 +32,16 @@ set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 set -g EDITOR 'vim'
 
 # =============================================
+# SOURCE
+# =============================================
+
+# allows using `module` command
+# for loading MPI module
+# more info: https://modules.readthedocs.io/en/latest/module.html#package-initialization
+source '/usr/share/Modules/init/fish'
+source '/usr/share/Modules/init/fish_completion'
+
+# =============================================
 # ALIAS
 # =============================================
 
