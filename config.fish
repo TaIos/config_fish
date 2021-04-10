@@ -23,14 +23,11 @@
 fish_vi_key_bindings
 
 # =============================================
-# PATH
-# =============================================
-
-set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
-
-# =============================================
 # SET
 # =============================================
+
+# PATH
+set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 
 set -g EDITOR 'vim'
 
