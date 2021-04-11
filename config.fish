@@ -38,8 +38,8 @@ set -g EDITOR 'vim'
 # allows using `module` command
 # for loading MPI module
 # more info: https://modules.readthedocs.io/en/latest/module.html#package-initialization
-source '/usr/share/Modules/init/fish'
-source "/usr/share/Modules/init/fish_completion"
+source '/usr/share/Modules/init/fish' >/dev/null 2>&1
+source '/usr/share/Modules/init/fish_completion' >/dev/null 2>&1
 
 # =============================================
 # ALIAS
