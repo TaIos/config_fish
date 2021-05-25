@@ -60,14 +60,25 @@ alias efish='vim ~/.config/fish/config.fish'
 # JUPYTER
 # =============================================
 
-# currect folder
-alias jn='nohup jupyter notebook --port=7000 . > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost:7000/lab > /dev/null 2>&1 &; return 0'
+# run jupyter lab in current directory
+function jn 
+	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
+	nohup jupyter notebook --port=$PORT . > /dev/null 2>&1 &
+	sleep 1
+	nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+	return 0
+end
 
-# home folder defined in: ~/.jupyter/jupyter_notebook_config.json
-alias jnh='nohup jupyter notebook --port=7000  > /dev/null 2>&1 &; sleep 1; nohup firefox https://localhost:7000/lab > /dev/null 2>&1 &; return 0'
+# run jupyter lab in home folder defined in: ~/.jupyter/jupyter_notebook_config.json
+function jnh
+	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
+	nohup jupyter notebook --port=7000  > /dev/null 2>&1 &
+	sleep 1
+	nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+	return 0
+end
 
 alias jnl='jupyter notebook list'
-
 alias jnq='kill (pgrep jupyter)'
 
 # =============================================
