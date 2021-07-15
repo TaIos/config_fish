@@ -30,7 +30,14 @@ fish_vi_key_bindings
 set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 
 set -g EDITOR 'vim'
-set -gx LESS '-N' # set line numbering in less
+
+# N - set line numbering in less
+# U - display special characters (eg backspace)
+# R - RAW-CONTROL-CHARS (fixes git diff problem)
+# F - exit if the entire file can be displayed on the first scree
+# X - do not clear screen on exit (leave it written to terminal)
+# e - automatically exit the second time it reaches end-of-file
+set -gx LESS '-NURFXe'
 
 # =============================================
 # SOURCE
