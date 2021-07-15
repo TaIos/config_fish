@@ -30,6 +30,7 @@ fish_vi_key_bindings
 set -gx PATH /home/slarty/.local/bin /home/slarty/bin $PATH
 
 set -g EDITOR 'vim'
+set -gx LESS '-N' # set line numbering in less
 
 # =============================================
 # SOURCE
