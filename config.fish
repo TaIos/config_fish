@@ -37,7 +37,7 @@ set -g EDITOR 'vim'
 # F - exit if the entire file can be displayed on the first scree
 # X - do not clear screen on exit (leave it written to terminal)
 # e - automatically exit the second time it reaches end-of-file
-set -gx LESS '-NURFXe'
+set -gx LESS '-URFXe'
 
 # =============================================
 # SOURCE
