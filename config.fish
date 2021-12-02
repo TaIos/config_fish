@@ -75,7 +75,6 @@ alias uniqway_clone_staging_db='sudo service postgresql restart; sleep 5; dropdb
 alias uniqway_clone_production_db='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh production'
 
 alias uniqway_get_production_application_config='/home/slarty/work/uniqway/uniqway-server/infra/aws/secrets.sh get production application-conf'
-
 alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-server/infra/aws/secrets.sh get staging application-conf'
 # =============================================
 # JUPYTER
