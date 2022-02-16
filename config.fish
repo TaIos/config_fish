@@ -82,6 +82,22 @@ alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-
 
 alias uniqway_connect_to_teamcity='ssh teamcity -L 8111:localhost:443'
 
+# connect to uniqway database
+function uniqway_connect_database
+    echo -e ==========\n$argv[1]\n==========
+	echo "Connection to uniqplay-database-$argv[1].c3ulragbtenq.eu-west-1.rds.amazonaws.com"
+	sudo systemctl stop postgresql
+	ssh -N -L 5432:uniqplay-database-$argv[1].c3ulragbtenq.eu-west-1.rds.amazonaws.com:5432 debug@debug &
+	set SSH_PID $last_pid
+	sleep 1
+	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) psql -h localhost -U uniqtest -d uniqplay_db
+	kill $SSH_PID
+	sudo systemctl start postgresql
+	return 0
+end
+
+
+
 # =============================================
 # JUPYTER
 # =============================================
