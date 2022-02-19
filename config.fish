@@ -83,7 +83,7 @@ alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-
 alias uniqway_connect_to_teamcity='ssh teamcity -L 8111:localhost:443'
 
 # connect to uniqway database
-function uniqway_connect_database
+function uniqway_database_connect
     echo -e ==========\n$argv[1]\n==========
 	echo "Connection to uniqplay-database-$argv[1].c3ulragbtenq.eu-west-1.rds.amazonaws.com"
 	sudo systemctl stop postgresql
