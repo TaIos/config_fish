@@ -68,13 +68,17 @@ alias p='stat -Lc "%A [%a] %U/%G %n"'
 
 # =========== UNIQWAY aliases
 
-alias uniqway_clone_and_prepare_production_db_for_testing='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh production; echo; python /home/slarty/work/uniqway/uniqway-server/quality-assurance/utils/create_setup_database_script.py | psql -U uniqplay_user -d uniqplay_db'
+# DEPRACATED - create_setup_database_script.py
+#alias uniqway_clone_and_prepare_production_db_for_testing='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh production; echo; python /home/slarty/work/uniqway/uniqway-server/quality-assurance/utils/create_setup_database_script.py | psql -U uniqplay_user -d uniqplay_db'
 
-alias uniqway_clone_and_prepare_staging_db_for_testing='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh staging; echo; python /home/slarty/work/uniqway/uniqway-server/quality-assurance/utils/create_setup_database_script.py | psql -U uniqplay_user -d uniqplay_db'
+# DEPRACATED - create_setup_database_script.py
+#alias uniqway_clone_and_prepare_staging_db_for_testing='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh staging; echo; python /home/slarty/work/uniqway/uniqway-server/quality-assurance/utils/create_setup_database_script.py | psql -U uniqplay_user -d uniqplay_db'
 
-alias uniqway_clone_staging_db='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh staging'
+# DEPRACATED - create_setup_database_script.py
+#alias uniqway_clone_staging_db='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh staging'
 
-alias uniqway_clone_production_db='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh production'
+# DEPRACATED - create_setup_database_script.py
+#alias uniqway_clone_production_db='sudo service postgresql restart; sleep 5; dropdb uniqplay_db; createdb uniqplay_db; /home/slarty/work/uniqway/uniqway-server/quality-assurance/scripts/restore-uniqway-db.sh production'
 
 alias uniqway_get_production_application_config='/home/slarty/work/uniqway/uniqway-server/infra/aws/secrets.sh get production application-conf'
 
