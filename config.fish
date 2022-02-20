@@ -86,10 +86,6 @@ alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-
 
 alias uniqway_connect_to_teamcity='ssh teamcity -L 8111:localhost:443'
 
-function _get_pg_pass
-
-end
-
 function _uniqway_create_ssh_connection_to_db --description "Create SSH tunnel to Uniqway database"
 	set ENVIRONMENT $argv[1]
 	set FREE_PORT $argv[2]
@@ -110,7 +106,6 @@ function uniqway_clone_database --description "Clone Uniqway database"
 	return 0
 end
 
-
 function uniqway_database_connect --description "Connect to Uniqway database"
 	set ENVIRONMENT $argv[1]
 	set FREE_PORT 5433
@@ -119,8 +114,6 @@ function uniqway_database_connect --description "Connect to Uniqway database"
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) psql -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT
 	return 0
 end
-
-
 
 # =============================================
 # JUPYTER
