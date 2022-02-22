@@ -99,7 +99,7 @@ end
 function uniqway_clone_database --description "Clone Uniqway database"
 	set ENVIRONMENT $argv[1]
 	set FREE_PORT 5433
-	set DUMP_FILE backup_$ENVIRONMENT_(date '+%Y-%m-%d_%H:%M:%S').sql
+	set DUMP_FILE "backup_"$ENVIRONMENT"_"(date '+%Y-%m-%d_%H:%M:%S')".sql"
 	_uniqway_create_ssh_connection_to_db $ENVIRONMENT $FREE_PORT
 	echo "Cloning "$argv[1]" on port "$FREE_PORT" to "$DUMP_FILE
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) pg_dump -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT -f $DUMP_FILE --verbose
