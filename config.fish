@@ -87,11 +87,13 @@ alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-
 alias uniqway_connect_to_teamcity_old='ssh teamcity_old -L 8111:localhost:443'
 alias uniqway_connect_to_teamcity='ssh -N -L 1337:localhost:8111 debug@teamcity'
 
+# =========== UNIQWAY functions
+
 function _uniqway_create_ssh_connection_to_db --description "Create SSH tunnel to Uniqway database"
 	set ENVIRONMENT $argv[1]
 	set FREE_PORT $argv[2]
 	set DB_URL uniqplay-database-$ENVIRONMENT.c3ulragbtenq.eu-west-1.rds.amazonaws.com
-    echo -e ==========\n$ENVIRONMENT\n==========
+	_print_as_heading "$ENVIRONMENT"
 	echo "Creating SSH tunnel to $DB_URL"
 	ssh -f -L $FREE_PORT:$DB_URL:5432 debug@debug 'sleep 10' # source for sleep hack: https://unix.stackexchange.com/a/83812
 	return 0
@@ -114,6 +116,24 @@ function uniqway_database_connect --description "Connect to Uniqway database"
 	echo "Connecting to "$argv[1]" on port "$FREE_PORT 
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) psql -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT
 	return 0
+end
+
+function _uniqway_docker_login_aws --description "Login to AWS for access of docker images stored in Amazon ECR"
+	_print_as_heading "Logging to AWS"
+	aws --profile uniqway --region eu-west-1 ecr get-login-password | docker login --username AWS --password-stdin https://202920049791.dkr.ecr.eu-west-1.amazonaws.com
+	return 0
+end
+
+function uniqway_pull_production_docker_image --description "Pull latest docker image of production database from Amazon ECR"
+	_uniqway_docker_login_aws	
+	_print_as_heading "Pulling latest production DB snapshot"
+	docker pull 202920049791.dkr.ecr.eu-west-1.amazonaws.com/database:latest
+	return 0
+end
+
+function uniqway_pull_and_run_latest_prod_docker_db --description "Start docker container with pulled production database"
+	uniqway_pull_production_docker_image
+	_print_as_heading "Running latest docker image with production database"
 end
 
 # =============================================
@@ -163,6 +183,29 @@ end
 # https://stackoverflow.com/a/13995944
 
 set fish_greeting
+
+# =============================================
+# HELPER FUNCTIONS
+# =============================================
+
+
+function _print_count_times --description "Print count times given character without newline to STDOUT. First argument is character, second is count."
+	set CHAR $argv[1]
+	set COUNT $argv[2]
+	printf %"$COUNT"s |tr " " $CHAR
+	return 0
+end
+
+function _print_as_heading --description "Print first argument as with visual delimiters before and after"
+	set HEADING $argv[1]
+	set LEN (string length $HEADING)
+	set DELIMITER "="
+	_print_count_times $DELIMITER $LEN
+	printf \n"$HEADING"\n
+	_print_count_times $DELIMITER $LEN
+	printf \n
+	return 0
+end
 
 # =============================================
 # GIT
