@@ -96,7 +96,6 @@ function _uniqway_create_ssh_connection_to_db --description "Create SSH tunnel t
 	_print_as_heading "$ENVIRONMENT"
 	echo "Creating SSH tunnel to $DB_URL"
 	ssh -f -L $FREE_PORT:$DB_URL:5432 debug@debug 'sleep 10' # source for sleep hack: https://unix.stackexchange.com/a/83812
-	return 0
 end
 
 function uniqway_clone_database --description "Clone Uniqway database"
@@ -106,7 +105,6 @@ function uniqway_clone_database --description "Clone Uniqway database"
 	_uniqway_create_ssh_connection_to_db $ENVIRONMENT $FREE_PORT
 	echo "Cloning "$argv[1]" on port "$FREE_PORT" to "$DUMP_FILE
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) pg_dump -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT -f $DUMP_FILE --verbose
-	return 0
 end
 
 function uniqway_database_connect --description "Connect to Uniqway database"
@@ -115,20 +113,17 @@ function uniqway_database_connect --description "Connect to Uniqway database"
 	_uniqway_create_ssh_connection_to_db $ENVIRONMENT $FREE_PORT
 	echo "Connecting to "$argv[1]" on port "$FREE_PORT 
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) psql -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT
-	return 0
 end
 
 function _uniqway_docker_login_aws --description "Login to AWS for access of docker images stored in Amazon ECR"
 	_print_as_heading "Logging to AWS"
 	aws --profile uniqway --region eu-west-1 ecr get-login-password | docker login --username AWS --password-stdin https://202920049791.dkr.ecr.eu-west-1.amazonaws.com
-	return 0
 end
 
 function _uniqway_pull_production_docker_image --description "Pull latest docker image of production database from Amazon ECR"
 	_uniqway_docker_login_aws	
 	_print_as_heading "Pulling latest production DB snapshot"
 	docker pull 202920049791.dkr.ecr.eu-west-1.amazonaws.com/database:latest
-	return 0
 end
 
 function _uniqway_get_local_bind_port_for_database --description "Get port as first argument or return sensible default if first argument is not present"
@@ -137,14 +132,12 @@ function _uniqway_get_local_bind_port_for_database --description "Get port as fi
 		set LOCAL_BIND_PORT 5432
 	end
 	echo $LOCAL_BIND_PORT
-	return 0
 end
 
 function uniqway_pull_and_run_latest_prod_docker_db --description "Start docker container with pulled production database. First argument is optional local bind port for PSQL database"
 	set LOCAL_BIND_PORT (_uniqway_get_local_bind_port_for_database $argv)
 	_uniqway_pull_production_docker_image
 	uniqway_refresh_prod_docker_db $LOCAL_BIND_PORT
-	return 0
 end
 
 function uniqway_refresh_prod_docker_db --description "Remove running docker container with database (if present) and recreate&run it from local image"
@@ -152,7 +145,6 @@ function uniqway_refresh_prod_docker_db --description "Remove running docker con
 	_print_as_heading "Refresh and run latest production database image [port=$LOCAL_BIND_PORT]"
 	docker rm -f postgres 2>/dev/null || true 
 	docker run -d -p $LOCAL_BIND_PORT:5432 --name postgres 202920049791.dkr.ecr.eu-west-1.amazonaws.com/database:latest
-	return 0
 end
 
 # =============================================
