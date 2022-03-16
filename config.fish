@@ -124,7 +124,7 @@ function _uniqway_docker_login_aws --description "Login to AWS for access of doc
 	return 0
 end
 
-function uniqway_pull_production_docker_image --description "Pull latest docker image of production database from Amazon ECR"
+function _uniqway_pull_production_docker_image --description "Pull latest docker image of production database from Amazon ECR"
 	_uniqway_docker_login_aws	
 	_print_as_heading "Pulling latest production DB snapshot"
 	docker pull 202920049791.dkr.ecr.eu-west-1.amazonaws.com/database:latest
@@ -136,7 +136,7 @@ function uniqway_pull_and_run_latest_prod_docker_db --description "Start docker 
 	if not test -n "$LOCAL_BIND_PORT"
 	  set LOCAL_BIND_PORT 5432
 	end
-	uniqway_pull_production_docker_image
+	_uniqway_pull_production_docker_image
 	_print_as_heading "Running latest docker image with production database [port=$LOCAL_BIND_PORT]"
 	docker rm -f postgres 2>/dev/null || true 
 	docker run -d -p $LOCAL_BIND_PORT:5432 --name postgres 202920049791.dkr.ecr.eu-west-1.amazonaws.com/database:latest
