@@ -95,7 +95,8 @@ function _uniqway_create_ssh_connection_to_db --description "Create SSH tunnel t
 	set DB_URL uniqplay-database-$ENVIRONMENT.c3ulragbtenq.eu-west-1.rds.amazonaws.com
 	_print_as_heading "$ENVIRONMENT"
 	echo "Creating SSH tunnel to $DB_URL"
-	ssh -f -L $FREE_PORT:$DB_URL:5432 debug@debug 'sleep 10' # source for sleep hack: https://unix.stackexchange.com/a/83812
+		# source for sleep hack: https://unix.stackexchange.com/a/83812
+	ssh -f -L $FREE_PORT:$DB_URL:5432 debug@debug  -o "ExitOnForwardFailure yes" 'sleep 10' 
 end
 
 function uniqway_clone_database --description "Clone Uniqway database"
@@ -103,6 +104,9 @@ function uniqway_clone_database --description "Clone Uniqway database"
 	set FREE_PORT 5433
 	set DUMP_FILE "backup_"$ENVIRONMENT"_"(date '+%Y-%m-%d_%H:%M:%S')".sql"
 	_uniqway_create_ssh_connection_to_db $ENVIRONMENT $FREE_PORT
+	if test $status -ne 0
+		return $status
+	end
 	echo "Cloning "$argv[1]" on port "$FREE_PORT" to "$DUMP_FILE
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) pg_dump -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT -f $DUMP_FILE --verbose
 end
@@ -111,6 +115,9 @@ function uniqway_database_connect --description "Connect to Uniqway database"
 	set ENVIRONMENT $argv[1]
 	set FREE_PORT 5433
 	_uniqway_create_ssh_connection_to_db $ENVIRONMENT $FREE_PORT
+	if test $status -ne 0
+		return $status
+	end
 	echo "Connecting to "$argv[1]" on port "$FREE_PORT 
 	PGPASSWORD=(cat /home/slarty/work/uniqway/uniqway-secrets/pg_pass) psql -h localhost -U uniqtest -d uniqplay_db -p $FREE_PORT
 end
