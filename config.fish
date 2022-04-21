@@ -66,7 +66,7 @@ alias efish='vim ~/.config/fish/config.fish'
 
 alias p='stat -Lc "%A [%a] %U/%G %n"'
 
-function ros_terminal --description "Run ROS terminal"
+function ros2_terminal --description "Run ROS terminal"
 	bash -c 'source /home/slarty/Apps/ros2_galactic/install/local_setup.bash; bash; '
 end
 
