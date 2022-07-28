@@ -180,7 +180,7 @@ function jnh
 	return 0
 end
 
-alias jnl='jupyter notebook list'
+alias jnl='jupyter server list'
 alias jnq='kill (pgrep jupyter)'
 
 # =============================================
