@@ -165,18 +165,18 @@ end
 # run jupyter lab in current directory
 function jn 
 	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
-	nohup jupyter notebook --port=$PORT . > /dev/null 2>&1 &
+	nohup jupyter-lab --port=$PORT . > /dev/null 2>&1 &
 	sleep 1
-	nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+	#nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
 	return 0
 end
 
 # run jupyter lab in home folder defined in: ~/.jupyter/jupyter_notebook_config.json
 function jnh
 	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
-	nohup jupyter notebook --port=7000  > /dev/null 2>&1 &
+	nohup jupyter-lab --port=7000 ~/Notebooks  > /dev/null 2>&1 &
 	sleep 1
-	nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+	#nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
 	return 0
 end
 
