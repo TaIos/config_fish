@@ -88,6 +88,8 @@ alias uniqway_get_production_application_config='/home/slarty/work/uniqway/uniqw
 
 alias uniqway_get_staging_application_config='/home/slarty/work/uniqway/uniqway-server/infra/aws/secrets.sh get staging application-conf'
 
+alias uniqway_secrets_script='/home/slarty/work/uniqway/uniqway-server/infra/aws/secrets.sh'
+
 alias uniqway_connect_to_teamcity_old='ssh teamcity_old -L 8111:localhost:443'
 alias uniqway_connect_to_teamcity='ssh -N -L 1337:localhost:8111 debug@teamcity'
 
