@@ -116,6 +116,7 @@ function _ubti_ssh_blade_param --description "SSH to blade server at UBTI (param
 end
 
 function _ubti_vpn_ssh_blade_param --description "VPN to UBTI and SSH to blade server (parametrized)"
+	ubti_vpn_disconnect
 	ubti_vpn_connect
 	_ubti_ssh_blade_param $argv[1] $argv[2]
 end
