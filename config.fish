@@ -97,32 +97,43 @@ alias uniqway_connect_to_teamcity='ssh -N -L 1337:localhost:8111 debug@teamcity'
 
 # =========== UNIQWAY functions
 
-# ===== UTBI servers
+# ===== UBTI servers
 
-function _uniqway_connect_to_ubti_vpn --description "Connect to UBTI VPN using a config file"
+function ubti_vpn_connect --description "Connect to UBTI VPN using a config file"
 	_print_as_heading "Creating VPN connection to UBTI"
 	sudo openvpn --cd /home/slarty/work/uniqway/ubti_vpn_safranek --daemon --config UBTI.ovpn
 	sleep 2 # TODO w4 openvpn to estabilish connection
 end
 
-function _uniqway_disconnect_to_ubti_vpn --description "Disconnect from UBTI VPN"
+function ubti_vpn_disconnect --description "Disconnect from UBTI VPN"
 	_print_as_heading "Closing VPN connection to UBTI"
 	sudo pkill openvpn
 end
 
-function uniqway_utbi_ssh_blade_param --description "SSH to blade server at UBTI (parametrized)"
-	_uniqway_connect_to_ubti_vpn
+function _ubti_ssh_blade_param --description "SSH to blade server at UBTI (parametrized)"
 	_print_as_heading "Creating SSH tunnel to $argv[1] (timeout 10s)"
 	ssh $argv[2] -o ConnectTimeout=10
-	_uniqway_disconnect_to_ubti_vpn
 end
 
-function uniqway_utbi_ssh_blade4 --description "SSH to blade 4 server at UBTI"
-	 uniqway_utbi_ssh_blade_param "blade 4" root@10.100.252.14
+function _ubti_vpn_ssh_blade_param --description "VPN to UBTI and SSH to blade server (parametrized)"
+	ubti_vpn_connect
+	_ubti_ssh_blade_param $argv[1] $argv[2]
 end
 
-function uniqway_utbi_ssh_blade6 --description "SSH to blade 6 server at UBTI"
-	 uniqway_utbi_ssh_blade_param "blade 6" root@10.100.252.16
+function ubti_blade4_ssh --description "SSH to blade 4 server at UBTI"
+	 _ubti_ssh_blade_param "blade 4" root@10.100.252.14
+end
+
+function ubti_blade6_ssh --description "SSH to blade 6 server at UBTI"
+	 _ubti_ssh_blade_param "blade 6" root@10.100.252.16
+end
+
+function ubti_blade4_vpn_ssh --description "VPN to UBTI and SSH to blade 4 server at UBTI"
+	 _ubti_vpn_ssh_blade_param "blade 4" root@10.100.252.14
+end
+
+function ubti_blade6_vpn_ssh --description "VPN to UBTI and SSH to blade 6 server at UBTI"
+	 _ubti_vpn_ssh_blade_param "blade 6" root@10.100.252.16
 end
 
 # =====
