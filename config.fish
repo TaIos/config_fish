@@ -111,8 +111,8 @@ function ubti_vpn_disconnect --description "Disconnect from UBTI VPN"
 end
 
 function _ubti_ssh_blade_param --description "SSH to blade server at UBTI (parametrized)"
-	_print_as_heading "Creating SSH tunnel to $argv[1] (timeout 10s)"
-	ssh $argv[2] -o ConnectTimeout=10
+	_print_as_heading "Creating SSH tunnel to $argv[1] (timeout 30s)"
+	ssh $argv[2] -o ConnectTimeout=30
 end
 
 function _ubti_vpn_ssh_blade_param --description "VPN to UBTI and SSH to blade server (parametrized)"
