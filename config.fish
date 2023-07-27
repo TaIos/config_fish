@@ -15,6 +15,9 @@
 #         fish_git_prompt
 #     end
 # 3. funcsave _tide_item_git
+# 
+# If system info message is printed, edit `fish_greeting.fish`
+# 	* https://github.com/oh-my-fish/theme-bobthefish/blob/master/functions/fish_greeting.fish
 
 # =============================================
 # FISH EXTENTIONS
