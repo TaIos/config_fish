@@ -211,9 +211,7 @@ end
 # JUPYTER
 # =============================================
 
-# doesnt work, jupyter-lab cant use this for some reason
-set JUPYTER_BROWSER '/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=firefox --file-forwarding org.mozilla.firefox'
-set JUPYTER_BROWSER ''
+set JUPYTER_BROWSER '/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=firefox --file-forwarding org.mozilla.firefox %s'
 
 function jn_next_available_port --description "Return next available port for jupyter"
 	echo (math (jupyter notebook list | wc -l)+7000-1)
