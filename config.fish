@@ -211,21 +211,26 @@ end
 # JUPYTER
 # =============================================
 
-# run jupyter lab in current directory
-function jncurrdir 
-	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
-	nohup jupyter-lab --port=$PORT . > /dev/null 2>&1 &
-	sleep 1
-	#nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+# doesnt work, jupyter-lab cant use this for some reason
+set JUPYTER_BROWSER '/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=firefox --file-forwarding org.mozilla.firefox'
+set JUPYTER_BROWSER ''
+
+function jn_next_available_port --description "Return next available port for jupyter"
+	echo (math (jupyter notebook list | wc -l)+7000-1)
+end
+
+function jncurrdir --description "Start jupyter in the currect directory"
+	set PORT (jn_next_available_port)
+	echo "Starting Jupyter Lab in the current directory on port $PORT"
+	nohup jupyter-lab --port=$PORT --browser="$JUPYTER_BROWSER" . > /dev/null 2>&1 &
 	return 0
 end
 
-# run jupyter lab in home folder defined in: ~/.jupyter/jupyter_notebook_config.json
-function jnhome
-	set PORT (math (jupyter notebook list | wc -l)+7000-1) # next availible port
-	nohup jupyter-lab --port=7000 ~/Notebooks  > /dev/null 2>&1 &
-	sleep 1
-	#nohup firefox https://localhost:$PORT/lab > /dev/null 2>&1 &
+function jnhome --description "Start jupyter in Notebooks directory"
+	set PORT (jn_next_available_port)
+	set NOTEBOOKS_DIRECTORY ~/Notebooks
+	echo "Starting Jupyter Lab in the notebooks directory $NOTEBOOKS_DIRECTORY on port $PORT"
+	nohup jupyter-lab --port=$PORT --browser="$JUPYTER_BROWSER" "$NOTEBOOKS_DIRECTORY" > /dev/null 2>&1 &
 	return 0
 end
 
