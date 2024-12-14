@@ -282,6 +282,28 @@ function _print_as_heading --description "Print first argument as with visual de
 end
 
 # =============================================
+# OTHER
+# =============================================
+
+function convert_mkv_to_gif --description "Converts all .mkv files in the current directory to .gif format with an optional scale parameter."
+    # Usage: convert_mkv_to_gif [scale]
+    # If the scale parameter is not provided, it defaults to 1000.
+
+	# Set the default scale value
+    set scale 1000
+
+    # Check if a scale argument was provided
+    if test (count $argv) -gt 0
+        set scale $argv[1]
+    end
+
+    for file in *.mkv
+        ffmpeg -i "$file" -vf "fps=10,scale=$scale:-1:flags=lanczos" -c:v gif (string replace ".mkv" ".gif" -- $file)
+    end
+end
+
+
+# =============================================
 # GIT
 # =============================================
 
